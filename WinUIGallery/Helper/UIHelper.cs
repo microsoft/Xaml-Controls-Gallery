@@ -63,5 +63,22 @@ namespace WinUIGallery.Helper
             peer.RaiseNotificationEvent(AutomationNotificationKind.ActionCompleted,
                                         AutomationNotificationProcessing.ImportantMostRecent, annoucement, activityID);
         }
+
+        public static T GetParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject current = child;
+
+            while (current != null)
+            {
+                if (current is T parent)
+                {
+                    return parent;
+                }
+
+                current = VisualTreeHelper.GetParent(current);
+            }
+
+            return null;
+        }
     }
 }

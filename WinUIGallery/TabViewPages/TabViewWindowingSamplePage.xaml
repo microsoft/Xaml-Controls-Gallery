@@ -17,13 +17,27 @@
                  TabTearOutWindowRequested="Tabs_TabTearOutWindowRequested"
                  TabTearOutRequested="Tabs_TabTearOutRequested"
                  ExternalTornOutTabsDropping="Tabs_ExternalTornOutTabsDropping"
-                 ExternalTornOutTabsDropped="Tabs_ExternalTornOutTabsDropped">
+                 ExternalTornOutTabsDropped="Tabs_ExternalTornOutTabsDropped"
+                 TabItemsSource="{x:Bind TabItemDataList}">
             <TabView.TabStripHeader>
                 <Grid x:Name="ShellTitleBarInset" Background="Transparent" />
             </TabView.TabStripHeader>
             <TabView.TabStripFooter>
                 <Grid x:Name="CustomDragRegion" Background="Transparent" />
             </TabView.TabStripFooter>
+            <TabView.TabItemTemplate>
+                <DataTemplate x:DataType="local:TabItemData">
+                    <TabViewItem Header="{x:Bind Header}">
+                        <TabViewItem.ContextFlyout>
+                            <MenuFlyout Opening="TabViewContextMenu_Opening" />
+                        </TabViewItem.ContextFlyout>
+                        <TabViewItem.IconSource>
+                            <SymbolIconSource Symbol="Placeholder" />
+                        </TabViewItem.IconSource>
+                        <local:MyTabContentControl DataContext="{x:Bind Content}" IsInProgress="{x:Bind IsInProgress, Mode=TwoWay}" />
+                    </TabViewItem>
+                </DataTemplate>
+            </TabView.TabItemTemplate>
         </TabView>
     </Grid>
 </Page>
