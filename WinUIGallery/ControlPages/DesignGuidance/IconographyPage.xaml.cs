@@ -143,13 +143,13 @@ public sealed partial class IconographyPage : Page
             }
 
         }
+    }
 
-        private void TagButton_Click(object sender, RoutedEventArgs e)
+    private void TagButton_Click(object sender, RoutedEventArgs e)
+    {
+        if ((sender as Button).Content is string tag)
         {
-            if ((sender as Button).Content is string tag)
-            {
-                IconsAutoSuggestBox.Text = tag;
-            }
+            IconsAutoSuggestBox.Text = tag;
         }
     }
 }
